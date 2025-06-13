@@ -25,7 +25,7 @@ clones:
 
 # cleanup (remove two clones)
 cleanup:
-    rm -rf {{ dirty_history_clone }} {{ clean_history_clone }}
+    rm -rf {{ dirty_history_clone }} {{ clean_history_clone }} {{ dirty_history_clone }}-*
 
 # filter extra-crispy clone
 filter:
@@ -43,3 +43,23 @@ filter:
     --path-glob '**.ipynb' \
     --path-glob '**/catch.hpp' \
     --path-glob '**.root'
+
+# push extra-crispy to clean history remote
+push:
+    git -C {{ clean_history_clone }} remote add origin {{ clean_history_remote }}
+    git -C {{ clean_history_clone }} push origin --mirror
+
+
+# do input command within a temporary test copy of the dirty history clone
+_check name *cmd:
+    cp -r {{ dirty_history_clone }} {{ dirty_history_clone }}-{{ name }}
+    git -C {{ dirty_history_clone }}-{{ name }} remote set-url origin {{ clean_history_remote }}
+    git -C {{ dirty_history_clone }}-{{ name }} {{ cmd }}
+    git -C {{ dirty_history_clone }}-{{ name }} rev-list --count
+    rm -rf {{ dirty_history_clone }}-{{ name }}
+
+# check a rebase pull from clean history into dirty history
+check-rebase-pull: (_check "check-rebase-pull" "pull --rebase=true")
+
+# check a merge pull from clean history into dirty history
+check-merge-pull: (_check "check-merge-pull" "pull --rebase=false")
