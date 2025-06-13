@@ -21,7 +21,6 @@ clones:
     set -eu
     git clone --recursive {{ dirty_history_remote }} {{ dirty_history_clone }}
     git clone --recursive {{ dirty_history_remote }} {{ clean_history_clone }}
-    git -C {{ clean_history_clone }} remote set-url origin {{ clean_history_remote }}
 
 
 # cleanup (remove two clones)
