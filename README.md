@@ -48,3 +48,12 @@ with default behavior.
 ```
 GIT_CONFIG_GLOBAL= git ...
 ```
+
+## GitHub-only Refs
+These are refs like `refs/pull/NNNN/merge` or `refs/pull/NNNN/head` that are used by GitHub to display PR diffs
+and run PR workflows.
+I don't think we will rewrite the history of those refs because
+1. [GitHub Support might not even do it](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/removing-sensitive-data-from-a-repository#fully-removing-the-data-from-github) -- They say they will not remove non-sensitive data and our files are large but do not contain sensitive data.
+2. These refs only exist on GitHub's servers and are only copied down locally if a user does some really fancy git configuration. i.e. users will need to opt in to download these refs that contain the heavy history.
+3. Leaving them in place will certainly keep the diff views of past PRs acting like they are currently.
+4. Only the PRs updating the gold files themselves would be affected (I think).
