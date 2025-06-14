@@ -38,3 +38,13 @@ cd original-recipe-NAME
 cd ..
 just test-cleanup NAME
 ```
+
+### Git Notes
+You can use the `GIT_CONFIG_GLOBAL` environment variable to temporarily change the Git configuration for testing.
+As an example, I have several configurations that deviate from normal/default behavior (e.g. `pull.rebase=true`),
+so I want to remove those configurations to see what a default Git would do.
+Defining `GIT_CONFIG_GLOBAL` to the empty string makes Git not load my normal `~/.gitconfig` and thus act
+with default behavior.
+```
+GIT_CONFIG_GLOBAL= git ...
+```
