@@ -34,20 +34,24 @@ ldmx_sw_github := "git@github.com:LDMX-Software/ldmx-sw.git"
 dirty_clone := "original-recipe"
 clean_clone := "extra-crispy"
 mock_remotes := justfile_directory() / "mock-remotes"
-dirty_remote := mock_remotes / dirty_clone + ".git"
-clean_remote := mock_remotes / clean_clone + ".git"
-dirty_url := "file://"+dirty_remote
-clean_url := "file://"+clean_remote
+actual_ldmx_sw := mock_remotes / "real_ldmx_sw.git"
+test_remote := mock_remotes / "test.git"
+test_url := "file://"+test_remote
 
 # make some mock remotes of ldmx-sw for testing
 init-mock-remotes:
-    git clone --recursive --bare {{ ldmx_sw_github }} {{ dirty_remote }}
-    git -C {{ dirty_remote }} remote remove origin
-    cp -r {{ dirty_remote }} {{ clean_remote }}
+    git clone --recursive --bare {{ ldmx_sw_github }} {{ actual_ldmx_sw }}
+    git -C {{ actual_ldmx_sw }} remote remove origin
+    cp -r {{ actual_ldmx_sw }} {{ test_remote }}
+
+# reset test remote to before filtering operation
+reset-test-remote:
+    rm -rf {{ test_remote }}
+    cp -r {{ actual_ldmx_sw }} {{ test_remote }}
 
 # make copies of local ldmx-sw
 init-local-clones:
-    git clone --recursive --no-local {{ dirty_url }} {{ dirty_clone }}
+    git clone --recursive --no-local {{ test_url }} {{ dirty_clone }}
     cp -r {{ dirty_clone }} {{ clean_clone }}
 
 # cleanup local copies of ldmx-sw
@@ -79,24 +83,24 @@ filter:
 
 # push extra-crispy to clean history remote
 push:
-    git -C {{ clean_clone }} push origin --mirror
+    git -C {{ clean_clone }} push --force --mirror origin
 
 # setup a dirty clone for testing
-_setup name:
+test-setup name:
     cp -r {{ dirty_clone }} {{ dirty_clone }}-{{ name }}
-    git -C {{ dirty_clone }}-{{ name }} remote set-url origin {{ clean_url }}
 
 
 # cleanup dirty clone for testing
-_cleanup name:
+test-cleanup name:
     rm -rf {{ dirty_clone }}-{{ name }}
 
 
 # test a rebase pull from clean history into dirty history
-test-rebase-pull name="test-rebase-pull": (_setup name) && (_cleanup name)
+test-rebase-pull name="test-rebase-pull": (test-setup name) && (test-cleanup name)
     #!/bin/sh
     set -eu
     cd {{ dirty_clone }}-{{ name }}
+    set -x
     git tag -d $(git tag -l)
     git fetch --all
     git status
@@ -105,10 +109,11 @@ test-rebase-pull name="test-rebase-pull": (_setup name) && (_cleanup name)
 
 
 # test a merge pull from clean history into dirty history
-test-merge-pull name="test-merge-pull": (_setup name) && (_cleanup name)
+test-merge-pull name="test-merge-pull": (test-setup name) && (test-cleanup name)
     #!/bin/sh
     set -eu
     cd {{ dirty_clone }}-{{ name }}
+    set -x
     git tag -d $(git tag -l)
     git fetch --all
     git status
