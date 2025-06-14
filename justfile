@@ -1,8 +1,23 @@
 @_default:
     just --list --justfile {{ justfile() }}
 
+# check latest git version (git-filter-repo needs >= 2.36.0)
+check-git:
+    #!/bin/sh
+    set -eu
+    current=$(git --version | cut -f 3 -d ' ')
+    minor=$(echo ${current} | cut -f 2 -d .)
+    if [ "${minor}" -lt 36 ]; then
+      echo "\e[31mCurrent git version ${current} is not >= 2.36.0 needed by git-filter-repo.\e[0m"
+      echo "Install latest git version for your system, which may require adding additional repos."
+      echo "On Ubuntu, this PPA provides the latest stable upstream Git version:"
+      echo "  sudo add-apt-repository ppa:git-core/ppa"
+      echo "  sudo apt update && sudo apt install git"
+      exit 1
+    fi
+
 # install git-filter-repo 2.47.0
-install-git-filter-repo:
+install-git-filter-repo: check-git
     #!/bin/sh
     set -eu
     wget https://github.com/newren/git-filter-repo/releases/download/v2.47.0/git-filter-repo-2.47.0.tar.xz
@@ -10,26 +25,44 @@ install-git-filter-repo:
     tar xf git-filter-repo-2.47.0.tar
     cp -t ~/.local/bin/ git-filter-repo-2.47.0/git-filter-repo
 
-dirty_history_clone := "original-recipe"
-dirty_history_remote := "git@github.com:LDMX-Software/ldmx-sw.git"
-clean_history_clone := "extra-crispy"
-clean_history_remote := "git@github.com:tomeichlersmith/ldmx-sw.git"
+# check that git-filter-repo is installed
+@check-git-filter-repo:
+    git filter-repo --version
 
-# make a new set of two clones of ldmx-sw
-clones:
-    #!/bin/sh
-    set -eu
-    git clone --recursive {{ dirty_history_remote }} {{ dirty_history_clone }}
-    git clone --recursive {{ dirty_history_remote }} {{ clean_history_clone }}
+ldmx_sw_github := "git@github.com:LDMX-Software/ldmx-sw.git"
 
+dirty_clone := "original-recipe"
+clean_clone := "extra-crispy"
+mock_remotes := justfile_directory() / "mock-remotes"
+dirty_remote := mock_remotes / dirty_clone + ".git"
+clean_remote := mock_remotes / clean_clone + ".git"
+dirty_url := "file://"+dirty_remote
+clean_url := "file://"+clean_remote
 
-# cleanup (remove two clones)
-cleanup:
-    rm -rf {{ dirty_history_clone }} {{ clean_history_clone }} {{ dirty_history_clone }}-*
+# make some mock remotes of ldmx-sw for testing
+init-mock-remotes:
+    git clone --recursive --bare {{ ldmx_sw_github }} {{ dirty_remote }}
+    git -C {{ dirty_remote }} remote remove origin
+    cp -r {{ dirty_remote }} {{ clean_remote }}
+
+# make copies of local ldmx-sw
+init-local-clones:
+    git clone --recursive --no-local {{ dirty_url }} {{ dirty_clone }}
+    cp -r {{ dirty_clone }} {{ clean_clone }}
+
+# cleanup local copies of ldmx-sw
+cleanup-local:
+    rm -rf {{ dirty_clone }} {{ clean_clone }} \
+           {{ dirty_clone }}-* {{ clean_clone }}-*
+
+# cleanup mock remotes of ldmx-sw
+cleanup-mock-remotes:
+    rm -rf {{ mock_remotes }}
 
 # filter extra-crispy clone
 filter:
-  git -C {{ clean_history_clone }} filter-repo \
+  git -C {{ clean_clone }} filter-repo \
+    --sensitive-data-removal \
     --invert-paths \
     --path-glob '**/gold.root' \
     --path-glob '**/gold.log' \
@@ -46,20 +79,39 @@ filter:
 
 # push extra-crispy to clean history remote
 push:
-    git -C {{ clean_history_clone }} remote add origin {{ clean_history_remote }}
-    git -C {{ clean_history_clone }} push origin --mirror
+    git -C {{ clean_clone }} push origin --mirror
+
+# setup a dirty clone for testing
+_setup name:
+    cp -r {{ dirty_clone }} {{ dirty_clone }}-{{ name }}
+    git -C {{ dirty_clone }}-{{ name }} remote set-url origin {{ clean_url }}
 
 
-# do input command within a temporary test copy of the dirty history clone
-_check name *cmd:
-    cp -r {{ dirty_history_clone }} {{ dirty_history_clone }}-{{ name }}
-    git -C {{ dirty_history_clone }}-{{ name }} remote set-url origin {{ clean_history_remote }}
-    git -C {{ dirty_history_clone }}-{{ name }} {{ cmd }}
-    git -C {{ dirty_history_clone }}-{{ name }} rev-list --count
-    rm -rf {{ dirty_history_clone }}-{{ name }}
+# cleanup dirty clone for testing
+_cleanup name:
+    rm -rf {{ dirty_clone }}-{{ name }}
 
-# check a rebase pull from clean history into dirty history
-check-rebase-pull: (_check "check-rebase-pull" "pull --rebase=true")
 
-# check a merge pull from clean history into dirty history
-check-merge-pull: (_check "check-merge-pull" "pull --rebase=false")
+# test a rebase pull from clean history into dirty history
+test-rebase-pull name="test-rebase-pull": (_setup name) && (_cleanup name)
+    #!/bin/sh
+    set -eu
+    cd {{ dirty_clone }}-{{ name }}
+    git tag -d $(git tag -l)
+    git fetch --all
+    git status
+    git pull --rebase=true
+    git rev-list --count trunk
+
+
+# test a merge pull from clean history into dirty history
+test-merge-pull name="test-merge-pull": (_setup name) && (_cleanup name)
+    #!/bin/sh
+    set -eu
+    cd {{ dirty_clone }}-{{ name }}
+    git tag -d $(git tag -l)
+    git fetch --all
+    git status
+    git pull --rebase=false
+    git rev-list --count trunk
+
