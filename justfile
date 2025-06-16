@@ -101,6 +101,7 @@ test-rebase-pull name="test-rebase-pull": (test-setup name) && (test-cleanup nam
     set -eu
     cd {{ dirty_clone }}-{{ name }}
     set -x
+    export GIT_CONFIG_GLOBAL=
     git tag -d $(git tag -l)
     git fetch --all
     git status
@@ -114,6 +115,7 @@ test-merge-pull name="test-merge-pull": (test-setup name) && (test-cleanup name)
     set -eu
     cd {{ dirty_clone }}-{{ name }}
     set -x
+    export GIT_CONFIG_GLOBAL=
     git tag -d $(git tag -l)
     git fetch --all
     git status
