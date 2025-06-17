@@ -44,6 +44,8 @@ However, there are some required global configurations that are done by users af
 so I use the [plain gitconfig](plain-gitconfig) when testing to see the Git behavior relative to this minimal
 configuration.
 
+- [0-pull](https://html-preview.github.io/?url=https://github.com/tomeichlersmith/ldmx-sw-rewrite-history-testing/blob/main/tests/0-pull.html)
+
 ### GitHub-only Refs
 These are refs like `refs/pull/NNNN/merge` or `refs/pull/NNNN/head` that are used by GitHub to display PR diffs
 and run PR workflows.
