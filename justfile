@@ -94,7 +94,7 @@ test name:
     #!/bin/sh
     cp -r {{ dirty_clone }} {{ name }}
     cd {{ name }}
-    record_filename={{ justfile_directory() / name }}
+    record_filename={{ justfile_directory() / "tests" / name }}
     script -O ${record_filename}.out
     rm -rf {{ name }}
     ansi2html <${record_filename}.out >${record_filename}.html
