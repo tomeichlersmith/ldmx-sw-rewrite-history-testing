@@ -3,8 +3,7 @@
 
 # check latest git version (git-filter-repo needs >= 2.36.0)
 check-git:
-    #!/bin/sh
-    set -eu
+    #!/bin/sh set -eu
     current=$(git --version | cut -f 3 -d ' ')
     minor=$(echo ${current} | cut -f 2 -d .)
     if [ "${minor}" -lt 36 ]; then
@@ -38,9 +37,12 @@ actual_ldmx_sw := mock_remotes / "real_ldmx_sw.git"
 test_remote := mock_remotes / "test.git"
 test_url := "file://"+test_remote
 
+export GIT_CONFIG_GLOBAL := justfile_directory() / "plain-gitconfig"
+
 # make some mock remotes of ldmx-sw for testing
 init-mock-remotes:
-    git clone --recursive --bare {{ ldmx_sw_github }} {{ actual_ldmx_sw }}
+    git clone --bare {{ ldmx_sw_github }} {{ actual_ldmx_sw }}
+    git -C {{ actual_ldmx_sw }} fetch -q --prune --update-head-ok --refmap "" origin +refs/*:refs/*
     git -C {{ actual_ldmx_sw }} remote remove origin
     cp -r {{ actual_ldmx_sw }} {{ test_remote }}
 
@@ -85,40 +87,11 @@ filter:
 push:
     git -C {{ clean_clone }} push --force --mirror origin
 
-# setup a dirty clone for testing
-test-setup name:
-    cp -r {{ dirty_clone }} {{ dirty_clone }}-{{ name }}
 
-
-# cleanup dirty clone for testing
-test-cleanup name:
-    rm -rf {{ dirty_clone }}-{{ name }}
-
-
-# test a rebase pull from clean history into dirty history
-test-rebase-pull name="test-rebase-pull": (test-setup name) && (test-cleanup name)
+# open a shell within a test repo recording the session with script
+test name: (test-setup name) && (test-cleanup name)
     #!/bin/sh
-    set -eu
-    cd {{ dirty_clone }}-{{ name }}
-    set -x
-    export GIT_CONFIG_GLOBAL=
-    git tag -d $(git tag -l)
-    git fetch --all
-    git status
-    git pull --rebase=true
-    git rev-list --count trunk
-
-
-# test a merge pull from clean history into dirty history
-test-merge-pull name="test-merge-pull": (test-setup name) && (test-cleanup name)
-    #!/bin/sh
-    set -eu
-    cd {{ dirty_clone }}-{{ name }}
-    set -x
-    export GIT_CONFIG_GLOBAL=
-    git tag -d $(git tag -l)
-    git fetch --all
-    git status
-    git pull --rebase=false
-    git rev-list --count trunk
-
+    cp -r {{ dirty_clone }} {{ name }}
+    cd {{ name }}
+    script -O {{ justfile_directory() / name }}.out
+    rm -rf {{ name }}
