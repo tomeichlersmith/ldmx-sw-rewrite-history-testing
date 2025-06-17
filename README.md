@@ -22,15 +22,6 @@ just filter
 This applies the `git-filter-repo` command to the "extra crispy" clone.
 And then `just push` pushes the "extra crispy" repo to its (mock) remote.
 
-## Experience
-To see how a developer with a clone of the old/dirty/heavy history would experience
-their remote being updated with the new/clean/light history, we make another copy of ldmx-sw
-and then set its remote to the mock "extra crispy" remote.
-
-`just test NAME` opens a shell in this copy of ldmx-sw and records any output into a log which
-is then rendered into an HTML file in `tests/NAME.html`. For these test recordings that are committed
-into this repository and pushed to GitHub, we can use [html-preview](https://github.com/html-preview/html-preview.github.io) to view the session including the input commands and output results.
-
 ### Git Notes
 You can use the `GIT_CONFIG_GLOBAL` environment variable to temporarily change the Git configuration for testing.
 As an example, I have several configurations that deviate from normal/default behavior (e.g. `pull.rebase=true`),
@@ -44,8 +35,6 @@ However, there are some required global configurations that are done by users af
 so I use the [plain gitconfig](plain-gitconfig) when testing to see the Git behavior relative to this minimal
 configuration.
 
-- [0-pull](https://html-preview.github.io/?url=https://github.com/tomeichlersmith/ldmx-sw-rewrite-history-testing/blob/main/tests/0-pull.html)
-
 ### GitHub-only Refs
 These are refs like `refs/pull/NNNN/merge` or `refs/pull/NNNN/head` that are used by GitHub to display PR diffs
 and run PR workflows.
@@ -54,3 +43,14 @@ I don't think we will rewrite the history of those refs because
 2. These refs only exist on GitHub's servers and are only copied down locally if a user does some really fancy git configuration. i.e. users will need to opt in to download these refs that contain the heavy history.
 3. Leaving them in place will certainly keep the diff views of past PRs acting like they are currently.
 4. Only the PRs updating the gold files themselves would be affected (I think).
+
+## Experience
+To see how a developer with a clone of the old/dirty/heavy history would experience
+their remote being updated with the new/clean/light history, we make another copy of ldmx-sw
+and then set its remote to the mock "extra crispy" remote.
+
+`just test NAME` opens a shell in this copy of ldmx-sw and records any output into a log which
+is then rendered into an HTML file in `tests/NAME.html`. For these test recordings that are committed
+into this repository and pushed to GitHub, we can use [html-preview](https://github.com/html-preview/html-preview.github.io) to view the session including the input commands and output results.
+
+- [0-pull](https://html-preview.github.io/?url=https://github.com/tomeichlersmith/ldmx-sw-rewrite-history-testing/blob/main/tests/0-pull.html)

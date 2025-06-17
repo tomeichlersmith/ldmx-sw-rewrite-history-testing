@@ -99,3 +99,10 @@ test name:
     cd ..
     rm -rf {{ name }}
     ansi2html <${record_filename}.out >${record_filename}.html
+
+# test link using html-preview to render HTML in this repo
+test_link_stub := "https://html-preview.github.io/?url=https://github.com/tomeichlersmith/ldmx-sw-rewrite-history-testing/blob/main/tests/"
+
+# add a link to a test to the bottom of the README
+@add-test-link name:
+    echo '- [{{ name }}]({{ test_link_stub + name + ".html" }})' >> README.md
