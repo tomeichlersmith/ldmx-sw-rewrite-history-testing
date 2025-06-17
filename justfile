@@ -37,6 +37,7 @@ actual_ldmx_sw := mock_remotes / "real_ldmx_sw.git"
 test_remote := mock_remotes / "test.git"
 test_url := "file://"+test_remote
 
+# use the plain-gitconfig to show git's default behavior
 export GIT_CONFIG_GLOBAL := justfile_directory() / "plain-gitconfig"
 
 # make some mock remotes of ldmx-sw for testing
@@ -66,7 +67,7 @@ cleanup-mock-remotes:
     rm -rf {{ mock_remotes }}
 
 # filter extra-crispy clone
-filter:
+filter: check-git-filter-repo
   git -C {{ clean_clone }} filter-repo \
     --sensitive-data-removal \
     --invert-paths \
