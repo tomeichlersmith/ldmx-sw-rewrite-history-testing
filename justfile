@@ -89,9 +89,11 @@ push:
 
 
 # open a shell within a test repo recording the session with script
-test name: (test-setup name) && (test-cleanup name)
+test name:
     #!/bin/sh
     cp -r {{ dirty_clone }} {{ name }}
     cd {{ name }}
-    script -O {{ justfile_directory() / name }}.out
+    record_filename={{ justfile_directory() / name }}
+    script -O ${record_filename}.out
     rm -rf {{ name }}
+    ansi2html <${record_filename}.out >${record_filename}.html
