@@ -1,6 +1,6 @@
 # git-filter-repo Testing
 
-Needs `just` and `git` installed.
+Needs `just`, `git >= 2.36.0`, and `ansi2html`.
 
 ## Setup
 - `just install-git-filter-repo` to install `git-filter-repo` 2.47.0
@@ -27,17 +27,9 @@ To see how a developer with a clone of the old/dirty/heavy history would experie
 their remote being updated with the new/clean/light history, we make another copy of ldmx-sw
 and then set its remote to the mock "extra crispy" remote.
 
-- `just test-merge-pull` shows what happens when you delete the local tags and do a merge-based pull
-- `just test-rebase-pull` shows what happens when you delete the local tags and do a rebase pull
-
-More testing of what it looks like for the remote's history to change can be done with
-```
-just test-setup NAME
-cd original-recipe-NAME
-# whatever git stuff you want to try out
-cd ..
-just test-cleanup NAME
-```
+`just test NAME` opens a shell in this copy of ldmx-sw and records any output into a log which
+is then rendered into an HTML file in `tests/NAME.html`. For these test recordings that are committed
+into this repository and pushed to GitHub, we can use [html-preview](https://github.com/html-preview/html-preview.github.io) to view the session including the input commands and output results.
 
 ### Git Notes
 You can use the `GIT_CONFIG_GLOBAL` environment variable to temporarily change the Git configuration for testing.
@@ -48,8 +40,11 @@ with default behavior.
 ```
 GIT_CONFIG_GLOBAL= git ...
 ```
+However, there are some required global configurations that are done by users after first attempting to commit,
+so I use the [plain gitconfig](plain-gitconfig) when testing to see the Git behavior relative to this minimal
+configuration.
 
-## GitHub-only Refs
+### GitHub-only Refs
 These are refs like `refs/pull/NNNN/merge` or `refs/pull/NNNN/head` that are used by GitHub to display PR diffs
 and run PR workflows.
 I don't think we will rewrite the history of those refs because
