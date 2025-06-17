@@ -53,4 +53,4 @@ and then set its remote to the mock "extra crispy" remote.
 is then rendered into an HTML file in `tests/NAME.html`. For these test recordings that are committed
 into this repository and pushed to GitHub, we can use [html-preview](https://github.com/html-preview/html-preview.github.io) to view the session including the input commands and output results.
 
-- [0-pull](https://html-preview.github.io/?url=https://github.com/tomeichlersmith/ldmx-sw-rewrite-history-testing/blob/main/tests/0-pull.html)
+- [naive-pull](https://html-preview.github.io/?url=https://github.com/tomeichlersmith/ldmx-sw-rewrite-history-testing/blob/main/tests/naive-pull.html): attempt to do a pull, see error, override it with first suggestion by Git
