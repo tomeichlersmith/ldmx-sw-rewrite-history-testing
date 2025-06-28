@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+body {background-color: black;}
+pre {
+	font-weight: normal;
+	color: #bbb;
+	white-space: -moz-pre-wrap;
+	white-space: -o-pre-wrap;
+	white-space: -pre-wrap;
+	white-space: pre-wrap;
+	word-wrap: break-word;
+	overflow-wrap: break-word;
+}
+b {font-weight: normal}
+b.BOLD {color: #fff}
+b.ITA {font-style: italic}
+b.UND {text-decoration: underline}
+b.STR {text-decoration: line-through}
+b.UNDSTR {text-decoration: underline line-through}
+b.BLK {color: #000000}
+b.RED {color: #aa0000}
+b.GRN {color: #00aa00}
+b.YEL {color: #aa5500}
+b.BLU {color: #0000aa}
+b.MAG {color: #aa00aa}
+b.CYN {color: #00aaaa}
+b.WHI {color: #aaaaaa}
+b.HIK {color: #555555}
+b.HIR {color: #ff5555}
+b.HIG {color: #55ff55}
+b.HIY {color: #ffff55}
+b.HIB {color: #5555ff}
+b.HIM {color: #ff55ff}
+b.HIC {color: #55ffff}
+b.HIW {color: #ffffff}
+b.BBLK {background-color: #000000}
+b.BRED {background-color: #aa0000}
+b.BGRN {background-color: #00aa00}
+b.BYEL {background-color: #aa5500}
+b.BBLU {background-color: #0000aa}
+b.BMAG {background-color: #aa00aa}
+b.BCYN {background-color: #00aaaa}
+b.BWHI {background-color: #aaaaaa}
+</style>
+</head>
+<body>
+<pre>Script started on 2025-06-28 08:36:47-05:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="238" LINES="57"]
+<b class=HIG>tom@zuko</b>:<b class=HIB>~/code/ldmx/1726-rewrite-history/rebase-local-changes</b>$ echo "hello world" &gt;&gt; E&#x232B;Recon/CMakeLists.txt 
+&crarr;
+<b class=HIG>tom@zuko</b>:<b class=HIB>~/code/ldmx/1726-rewrite-history/rebase-local-changes</b>$ git add Recon/CMakeLists.txt 
+&crarr;
+<b class=HIG>tom@zuko</b>:<b class=HIB>~/code/ldmx/1726-rewrite-history/rebase-local-changes</b>$ gitc&#x232B; commit -m "commit that is only local"
+&crarr;
+[trunk afe68917] commit that is only local
+ 1 file changed, 1 insertion(+)
+<b class=HIG>tom@zuko</b>:<b class=HIB>~/code/ldmx/1726-rewrite-history/rebase-local-changes</b>$ git pull --rebase &#x232B;=true
+&crarr;
+remote: Enumerating objects: 50180, done.
+remote: Counting objects:   0% (1/49986)&crarr;
+remote: Counting objects:   1% (500/49986)&crarr;
+remote: Counting objects:   2% (1000/49986)&crarr;
+remote: Counting objects:   3% (1500/49986)&crarr;
+remote: Counting objects:   4% (2000/49986)&crarr;
+remote: Counting objects:   5% (2500/49986)&crarr;
+remote: Counting objects:   6% (3000/49986)&crarr;
+remote: Counting objects:   7% (3500/49986)&crarr;
+remote: Counting objects:   8% (3999/49986)&crarr;
+remote: Counting objects:   9% (4499/49986)&crarr;
+remote: Counting objects:  10% (4999/49986)&crarr;
+remote: Counting objects:  11% (5499/49986)&crarr;
+remote: Counting objects:  12% (5999/49986)&crarr;
+remote: Counting objects:  13% (6499/49986)&crarr;
+remote: Counting objects:  14% (6999/49986)&crarr;
+remote: Counting objects:  15% (7498/49986)&crarr;
+remote: Counting objects:  16% (7998/49986)&crarr;
+remote: Counting objects:  17% (8498/49986)&crarr;
+remote: Counting objects:  18% (8998/49986)&crarr;
+remote: Counting objects:  19% (9498/49986)&crarr;
+remote: Counting objects:  20% (9998/49986)&crarr;
+remote: Counting objects:  21% (10498/49986)&crarr;
+remote: Counting objects:  22% (10997/49986)&crarr;
+remote: Counting objects:  23% (11497/49986)&crarr;
+remote: Counting objects:  24% (11997/49986)&crarr;
+remote: Counting objects:  25% (12497/49986)&crarr;
+remote: Counting objects:  26% (12997/49986)&crarr;
+remote: Counting objects:  27% (13497/49986)&crarr;
+remote: Counting objects:  28% (13997/49986)&crarr;
+remote: Counting objects:  29% (14496/49986)&crarr;
+remote: Counting objects:  30% (14996/49986)&crarr;
+remote: Counting objects:  31% (15496/49986)&crarr;
+remote: Counting objects:  32% (15996/49986)&crarr;
+remote: Counting objects:  33% (16496/49986)&crarr;
+remote: Counting objects:  34% (16996/49986)&crarr;
+remote: Counting objects:  35% (17496/49986)&crarr;
+remote: Counting objects:  36% (17995/49986)&crarr;
+remote: Counting objects:  37% (18495/49986)&crarr;
+remote: Counting objects:  38% (18995/49986)&crarr;
+remote: Counting objects:  39% (19495/49986)&crarr;
+remote: Counting objects:  40% (19995/49986)&crarr;
+remote: Counting objects:  41% (20495/49986)&crarr;
+remote: Counting objects:  42% (20995/49986)&crarr;
+remote: Counting objects:  43% (21494/49986)&crarr;
+remote: Counting objects:  44% (21994/49986)&crarr;
+remote: Counting objects:  45% (22494/49986)&crarr;
+remote: Counting objects:  46% (22994/49986)&crarr;
+remote: Counting objects:  47% (23494/49986)&crarr;
+remote: Counting objects:  48% (23994/49986)&crarr;
+remote: Counting objects:  49% (24494/49986)&crarr;
+remote: Counting objects:  50% (24993/49986)&crarr;
+remote: Counting objects:  51% (25493/49986)&crarr;
+remote: Counting objects:  52% (25993/49986)&crarr;
+remote: Counting objects:  53% (26493/49986)&crarr;
+remote: Counting objects:  54% (26993/49986)&crarr;
+remote: Counting objects:  55% (27493/49986)&crarr;
+remote: Counting objects:  56% (27993/49986)&crarr;
+remote: Counting objects:  57% (28493/49986)&crarr;
+remote: Counting objects:  58% (28992/49986)&crarr;
+remote: Counting objects:  59% (29492/49986)&crarr;
+remote: Counting objects:  60% (29992/49986)&crarr;
+remote: Counting objects:  61% (30492/49986)&crarr;
+remote: Counting objects:  62% (30992/49986)&crarr;
+remote: Counting objects:  63% (31492/49986)&crarr;
+remote: Counting objects:  64% (31992/49986)&crarr;
+remote: Counting objects:  65% (32491/49986)&crarr;
+remote: Counting objects:  66% (32991/49986)&crarr;
+remote: Counting objects:  67% (33491/49986)&crarr;
+remote: Counting objects:  68% (33991/49986)&crarr;
+remote: Counting objects:  69% (34491/49986)&crarr;
+remote: Counting objects:  70% (34991/49986)&crarr;
+remote: Counting objects:  71% (35491/49986)&crarr;
+remote: Counting objects:  72% (35990/49986)&crarr;
+remote: Counting objects:  73% (36490/49986)&crarr;
+remote: Counting objects:  74% (36990/49986)&crarr;
+remote: Counting objects:  75% (37490/49986)&crarr;
+remote: Counting objects:  76% (37990/49986)&crarr;
+remote: Counting objects:  77% (38490/49986)&crarr;
+remote: Counting objects:  78% (38990/49986)&crarr;
+remote: Counting objects:  79% (39489/49986)&crarr;
+remote: Counting objects:  80% (39989/49986)&crarr;
+remote: Counting objects:  81% (40489/49986)&crarr;
+remote: Counting objects:  82% (40989/49986)&crarr;
+remote: Counting objects:  83% (41489/49986)&crarr;
+remote: Counting objects:  84% (41989/49986)&crarr;
+remote: Counting objects:  85% (42489/49986)&crarr;
+remote: Counting objects:  86% (42988/49986)&crarr;
+remote: Counting objects:  87% (43488/49986)&crarr;
+remote: Counting objects:  88% (43988/49986)&crarr;
+remote: Counting objects:  89% (44488/49986)&crarr;
+remote: Counting objects:  90% (44988/49986)&crarr;
+remote: Counting objects:  91% (45488/49986)&crarr;
+remote: Counting objects:  92% (45988/49986)&crarr;
+remote: Counting objects:  93% (46487/49986)&crarr;
+remote: Counting objects:  94% (46987/49986)&crarr;
+remote: Counting objects:  95% (47487/49986)&crarr;
+remote: Counting objects:  96% (47987/49986)&crarr;
+remote: Counting objects:  97% (48487/49986)&crarr;
+remote: Counting objects:  98% (48987/49986)&crarr;
+remote: Counting objects:  99% (49487/49986)&crarr;
+remote: Counting objects: 100% (49986/49986)&crarr;
+remote: Counting objects: 100% (49986/49986), done.
+remote: Compressing objects:   0% (1/14745)&crarr;
+remote: Compressing objects:   1% (148/14745)&crarr;
+remote: Compressing objects:   2% (295/14745)&crarr;
+remote: Compressing objects:   3% (443/14745)&crarr;
+remote: Compressing objects:   4% (590/14745)&crarr;
+remote: Compressing objects:   5% (738/14745)&crarr;
+remote: Compressing objects:   6% (885/14745)&crarr;
+remote: Compressing objects:   7% (1033/14745)&crarr;
+remote: Compressing objects:   8% (1180/14745)&crarr;
+remote: Compressing objects:   9% (1328/14745)&crarr;
+remote: Compressing objects:  10% (1475/14745)&crarr;
+remote: Compressing objects:  11% (1622/14745)&crarr;
+remote: Compressing objects:  12% (1770/14745)&crarr;
+remote: Compressing objects:  13% (1917/14745)&crarr;
+remote: Compressing objects:  14% (2065/14745)&crarr;
+remote: Compressing objects:  15% (2212/14745)&crarr;
+remote: Compressing objects:  16% (2360/14745)&crarr;
+remote: Compressing objects:  17% (2507/14745)&crarr;
+remote: Compressing objects:  18% (2655/14745)&crarr;
+remote: Compressing objects:  19% (2802/14745)&crarr;
+remote: Compressing objects:  20% (2949/14745)&crarr;
+remote: Compressing objects:  21% (3097/14745)&crarr;
+remote: Compressing objects:  22% (3244/14745)&crarr;
+remote: Compressing objects:  23% (3392/14745)&crarr;
+remote: Compressing objects:  24% (3539/14745)&crarr;
+remote: Compressing objects:  25% (3687/14745)&crarr;
+remote: Compressing objects:  26% (3834/14745)&crarr;
+remote: Compressing objects:  27% (3982/14745)&crarr;
+remote: Compressing objects:  28% (4129/14745)&crarr;
+remote: Compressing objects:  29% (4277/14745)&crarr;
+remote: Compressing objects:  30% (4424/14745)&crarr;
+remote: Compressing objects:  31% (4571/14745)&crarr;
+remote: Compressing objects:  32% (4719/14745)&crarr;
+remote: Compressing objects:  33% (4866/14745)&crarr;
+remote: Compressing objects:  34% (5014/14745)&crarr;
+remote: Compressing objects:  35% (5161/14745)&crarr;
+remote: Compressing objects:  36% (5309/14745)&crarr;
+remote: Compressing objects:  37% (5456/14745)&crarr;
+remote: Compressing objects:  38% (5604/14745)&crarr;
+remote: Compressing objects:  39% (5751/14745)&crarr;
+remote: Compressing objects:  40% (5898/14745)&crarr;
+remote: Compressing objects:  41% (6046/14745)&crarr;
+remote: Compressing objects:  42% (6193/14745)&crarr;
+remote: Compressing objects:  43% (6341/14745)&crarr;
+remote: Compressing objects:  44% (6488/14745)&crarr;
+remote: Compressing objects:  45% (6636/14745)&crarr;
+remote: Compressing objects:  46% (6783/14745)&crarr;
+remote: Compressing objects:  47% (6931/14745)&crarr;
+remote: Compressing objects:  48% (7078/14745)&crarr;
+remote: Compressing objects:  49% (7226/14745)&crarr;
+remote: Compressing objects:  50% (7373/14745)&crarr;
+remote: Compressing objects:  51% (7520/14745)&crarr;
+remote: Compressing objects:  52% (7668/14745)&crarr;
+remote: Compressing objects:  53% (7815/14745)&crarr;
+remote: Compressing objects:  54% (7963/14745)&crarr;
+remote: Compressing objects:  55% (8110/14745)&crarr;
+remote: Compressing objects:  56% (8258/14745)&crarr;
+remote: Compressing objects:  57% (8405/14745)&crarr;
+remote: Compressing objects:  58% (8553/14745)&crarr;
+remote: Compressing objects:  59% (8700/14745)&crarr;
+remote: Compressing objects:  60% (8847/14745)&crarr;
+remote: Compressing objects:  61% (8995/14745)&crarr;
+remote: Compressing objects:  62% (9142/14745)&crarr;
+remote: Compressing objects:  63% (9290/14745)&crarr;
+remote: Compressing objects:  64% (9437/14745)&crarr;
+remote: Compressing objects:  65% (9585/14745)&crarr;
+remote: Compressing objects:  66% (9732/14745)&crarr;
+remote: Compressing objects:  67% (9880/14745)&crarr;
+remote: Compressing objects:  68% (10027/14745)&crarr;
+remote: Compressing objects:  69% (10175/14745)&crarr;
+remote: Compressing objects:  70% (10322/14745)&crarr;
+remote: Compressing objects:  71% (10469/14745)&crarr;
+remote: Compressing objects:  72% (10617/14745)&crarr;
+remote: Compressing objects:  73% (10764/14745)&crarr;
+remote: Compressing objects:  74% (10912/14745)&crarr;
+remote: Compressing objects:  75% (11059/14745)&crarr;
+remote: Compressing objects:  76% (11207/14745)&crarr;
+remote: Compressing objects:  77% (11354/14745)&crarr;
+remote: Compressing objects:  78% (11502/14745)&crarr;
+remote: Compressing objects:  79% (11649/14745)&crarr;
+remote: Compressing objects:  80% (11796/14745)&crarr;
+remote: Compressing objects:  81% (11944/14745)&crarr;
+remote: Compressing objects:  82% (12091/14745)&crarr;
+remote: Compressing objects:  83% (12239/14745)&crarr;
+remote: Compressing objects:  84% (12386/14745)&crarr;
+remote: Compressing objects:  85% (12534/14745)&crarr;
+remote: Compressing objects:  86% (12681/14745)&crarr;
+remote: Compressing objects:  87% (12829/14745)&crarr;
+remote: Compressing objects:  88% (12976/14745)&crarr;
+remote: Compressing objects:  89% (13124/14745)&crarr;
+remote: Compressing objects:  90% (13271/14745)&crarr;
+remote: Compressing objects:  91% (13418/14745)&crarr;
+remote: Compressing objects:  92% (13566/14745)&crarr;
+remote: Compressing objects:  93% (13713/14745)&crarr;
+remote: Compressing objects:  94% (13861/14745)&crarr;
+remote: Compressing objects:  95% (14008/14745)&crarr;
+remote: Compressing objects:  96% (14156/14745)&crarr;
+remote: Compressing objects:  97% (14303/14745)&crarr;
+remote: Compressing objects:  98% (14451/14745)&crarr;
+remote: Compressing objects:  99% (14598/14745)&crarr;
+remote: Compressing objects: 100% (14745/14745)&crarr;
+remote: Compressing objects: 100% (14745/14745), done.
+Receiving objects:   0% (1/49728)&crarr;
+Receiving objects:   1% (498/49728)&crarr;
+Receiving objects:   2% (995/49728)&crarr;
+Receiving objects:   3% (1492/49728)&crarr;
+Receiving objects:   4% (1990/49728)&crarr;
+Receiving objects:   5% (2487/49728)&crarr;
+Receiving objects:   6% (2984/49728)&crarr;
+Receiving objects:   7% (3481/49728)&crarr;
+Receiving objects:   8% (3979/49728)&crarr;
+Receiving objects:   9% (4476/49728)&crarr;
+Receiving objects:  10% (4973/49728)&crarr;
+Receiving objects:  11% (5471/49728)&crarr;
+Receiving objects:  12% (5968/49728)&crarr;
+Receiving objects:  13% (6465/49728)&crarr;
+Receiving objects:  14% (6962/49728)&crarr;
+Receiving objects:  15% (7460/49728)&crarr;
+Receiving objects:  16% (7957/49728)&crarr;
+Receiving objects:  17% (8454/49728)&crarr;
+Receiving objects:  18% (8952/49728)&crarr;
+Receiving objects:  19% (9449/49728)&crarr;
+Receiving objects:  20% (9946/49728)&crarr;
+Receiving objects:  21% (10443/49728)&crarr;
+Receiving objects:  22% (10941/49728)&crarr;
+Receiving objects:  23% (11438/49728)&crarr;
+Receiving objects:  24% (11935/49728)&crarr;
+Receiving objects:  25% (12432/49728)&crarr;
+Receiving objects:  26% (12930/49728)&crarr;
+Receiving objects:  27% (13427/49728)&crarr;
+Receiving objects:  28% (13924/49728)&crarr;
+Receiving objects:  29% (14422/49728)&crarr;
+Receiving objects:  30% (14919/49728)&crarr;
+Receiving objects:  31% (15416/49728)&crarr;
+Receiving objects:  32% (15913/49728)&crarr;
+Receiving objects:  33% (16411/49728)&crarr;
+Receiving objects:  34% (16908/49728)&crarr;
+Receiving objects:  35% (17405/49728)&crarr;
+Receiving objects:  36% (17903/49728)&crarr;
+Receiving objects:  37% (18400/49728)&crarr;
+Receiving objects:  38% (18897/49728)&crarr;
+Receiving objects:  39% (19394/49728)&crarr;
+Receiving objects:  40% (19892/49728)&crarr;
+Receiving objects:  41% (20389/49728)&crarr;
+Receiving objects:  42% (20886/49728)&crarr;
+Receiving objects:  43% (21384/49728)&crarr;
+Receiving objects:  44% (21881/49728)&crarr;
+Receiving objects:  45% (22378/49728)&crarr;
+Receiving objects:  46% (22875/49728)&crarr;
+Receiving objects:  47% (23373/49728)&crarr;
+Receiving objects:  48% (23870/49728)&crarr;
+Receiving objects:  49% (24367/49728)&crarr;
+Receiving objects:  50% (24864/49728)&crarr;
+Receiving objects:  51% (25362/49728)&crarr;
+Receiving objects:  52% (25859/49728)&crarr;
+Receiving objects:  53% (26356/49728)&crarr;
+Receiving objects:  54% (26854/49728)&crarr;
+Receiving objects:  54% (27336/49728), 39.38 MiB | 39.41 MiB/s&crarr;
+Receiving objects:  55% (27351/49728), 39.38 MiB | 39.41 MiB/s&crarr;
+Receiving objects:  56% (27848/49728), 39.38 MiB | 39.41 MiB/s&crarr;
+Receiving objects:  57% (28345/49728), 39.38 MiB | 39.41 MiB/s&crarr;
+Receiving objects:  57% (28728/49728), 59.16 MiB | 29.60 MiB/s&crarr;
+Receiving objects:  58% (28843/49728), 59.16 MiB | 29.60 MiB/s&crarr;
+Receiving objects:  59% (29340/49728), 59.16 MiB | 29.60 MiB/s&crarr;
+Receiving objects:  60% (29837/49728), 59.16 MiB | 29.60 MiB/s&crarr;
+Receiving objects:  61% (30335/49728), 59.16 MiB | 29.60 MiB/s&crarr;
+Receiving objects:  62% (30832/49728), 59.16 MiB | 29.60 MiB/s&crarr;
+Receiving objects:  63% (31329/49728), 59.16 MiB | 29.60 MiB/s&crarr;
+Receiving objects:  64% (31826/49728), 59.16 MiB | 29.60 MiB/s&crarr;
+Receiving objects:  65% (32324/49728), 59.16 MiB | 29.60 MiB/s&crarr;
+Receiving objects:  66% (32821/49728), 59.16 MiB | 29.60 MiB/s&crarr;
+Receiving objects:  67% (33318/49728), 59.16 MiB | 29.60 MiB/s&crarr;
+Receiving objects:  68% (33816/49728), 59.16 MiB | 29.60 MiB/s&crarr;
+Receiving objects:  69% (34313/49728), 59.16 MiB | 29.60 MiB/s&crarr;
+Receiving objects:  70% (34810/49728), 59.16 MiB | 29.60 MiB/s&crarr;
+Receiving objects:  71% (35307/49728), 59.16 MiB | 29.60 MiB/s&crarr;
+Receiving objects:  72% (35805/49728), 59.16 MiB | 29.60 MiB/s&crarr;
+Receiving objects:  73% (36302/49728), 59.16 MiB | 29.60 MiB/s&crarr;
+Receiving objects:  74% (36799/49728), 59.16 MiB | 29.60 MiB/s&crarr;
+Receiving objects:  75% (37296/49728), 59.16 MiB | 29.60 MiB/s&crarr;
+Receiving objects:  76% (37794/49728), 59.16 MiB | 29.60 MiB/s&crarr;
+Receiving objects:  77% (38291/49728), 59.16 MiB | 29.60 MiB/s&crarr;
+Receiving objects:  78% (38788/49728), 59.16 MiB | 29.60 MiB/s&crarr;
+Receiving objects:  79% (39286/49728), 59.16 MiB | 29.60 MiB/s&crarr;
+Receiving objects:  80% (39783/49728), 59.16 MiB | 29.60 MiB/s&crarr;
+Receiving objects:  81% (40280/49728), 59.16 MiB | 29.60 MiB/s&crarr;
+Receiving objects:  82% (40777/49728), 59.16 MiB | 29.60 MiB/s&crarr;
+Receiving objects:  83% (41275/49728), 59.16 MiB | 29.60 MiB/s&crarr;
+Receiving objects:  84% (41772/49728), 59.16 MiB | 29.60 MiB/s&crarr;
+Receiving objects:  85% (42269/49728), 59.16 MiB | 29.60 MiB/s&crarr;
+Receiving objects:  86% (42767/49728), 59.16 MiB | 29.60 MiB/s&crarr;
+Receiving objects:  87% (43264/49728), 59.16 MiB | 29.60 MiB/s&crarr;
+Receiving objects:  88% (43761/49728), 59.16 MiB | 29.60 MiB/s&crarr;
+Receiving objects:  89% (44258/49728), 59.16 MiB | 29.60 MiB/s&crarr;
+Receiving objects:  90% (44756/49728), 59.16 MiB | 29.60 MiB/s&crarr;
+Receiving objects:  91% (45253/49728), 59.16 MiB | 29.60 MiB/s&crarr;
+Receiving objects:  92% (45750/49728), 59.16 MiB | 29.60 MiB/s&crarr;
+Receiving objects:  93% (46248/49728), 59.16 MiB | 29.60 MiB/s&crarr;
+Receiving objects:  94% (46745/49728), 59.16 MiB | 29.60 MiB/s&crarr;
+Receiving objects:  95% (47242/49728), 59.16 MiB | 29.60 MiB/s&crarr;
+Receiving objects:  96% (47739/49728), 59.16 MiB | 29.60 MiB/s&crarr;
+Receiving objects:  97% (48237/49728), 59.16 MiB | 29.60 MiB/s&crarr;
+Receiving objects:  98% (48734/49728), 59.16 MiB | 29.60 MiB/s&crarr;
+remote: Total 49728 (delta 30122), reused 49012 (delta 29768), pack-reused 0 (from 0)
+Receiving objects:  99% (49231/49728), 59.16 MiB | 29.60 MiB/s&crarr;
+Receiving objects: 100% (49728/49728), 59.16 MiB | 29.60 MiB/s&crarr;
+Receiving objects: 100% (49728/49728), 64.03 MiB | 27.04 MiB/s, done.
+Resolving deltas:   0% (0/30122)&crarr;
+Resolving deltas:   1% (302/30122)&crarr;
+Resolving deltas:   2% (603/30122)&crarr;
+Resolving deltas:   3% (904/30122)&crarr;
+Resolving deltas:   4% (1205/30122)&crarr;
+Resolving deltas:   5% (1507/30122)&crarr;
+Resolving deltas:   6% (1808/30122)&crarr;
+Resolving deltas:   7% (2110/30122)&crarr;
+Resolving deltas:   8% (2410/30122)&crarr;
+Resolving deltas:   9% (2711/30122)&crarr;
+Resolving deltas:  10% (3013/30122)&crarr;
+Resolving deltas:  11% (3314/30122)&crarr;
+Resolving deltas:  12% (3615/30122)&crarr;
+Resolving deltas:  13% (3916/30122)&crarr;
+Resolving deltas:  14% (4218/30122)&crarr;
+Resolving deltas:  15% (4519/30122)&crarr;
+Resolving deltas:  16% (4820/30122)&crarr;
+Resolving deltas:  17% (5121/30122)&crarr;
+Resolving deltas:  18% (5422/30122)&crarr;
+Resolving deltas:  19% (5724/30122)&crarr;
+Resolving deltas:  20% (6025/30122)&crarr;
+Resolving deltas:  21% (6326/30122)&crarr;
+Resolving deltas:  22% (6627/30122)&crarr;
+Resolving deltas:  23% (6931/30122)&crarr;
+Resolving deltas:  24% (7230/30122)&crarr;
+Resolving deltas:  25% (7531/30122)&crarr;
+Resolving deltas:  26% (7832/30122)&crarr;
+Resolving deltas:  27% (8133/30122)&crarr;
+Resolving deltas:  28% (8435/30122)&crarr;
+Resolving deltas:  29% (8736/30122)&crarr;
+Resolving deltas:  30% (9037/30122)&crarr;
+Resolving deltas:  31% (9338/30122)&crarr;
+Resolving deltas:  32% (9640/30122)&crarr;
+Resolving deltas:  33% (9941/30122)&crarr;
+Resolving deltas:  34% (10242/30122)&crarr;
+Resolving deltas:  35% (10543/30122)&crarr;
+Resolving deltas:  36% (10844/30122)&crarr;
+Resolving deltas:  37% (11146/30122)&crarr;
+Resolving deltas:  38% (11447/30122)&crarr;
+Resolving deltas:  39% (11748/30122)&crarr;
+Resolving deltas:  40% (12049/30122)&crarr;
+Resolving deltas:  41% (12351/30122)&crarr;
+Resolving deltas:  42% (12653/30122)&crarr;
+Resolving deltas:  43% (12953/30122)&crarr;
+Resolving deltas:  44% (13254/30122)&crarr;
+Resolving deltas:  45% (13555/30122)&crarr;
+Resolving deltas:  46% (13857/30122)&crarr;
+Resolving deltas:  47% (14158/30122)&crarr;
+Resolving deltas:  48% (14460/30122)&crarr;
+Resolving deltas:  49% (14760/30122)&crarr;
+Resolving deltas:  50% (15061/30122)&crarr;
+Resolving deltas:  51% (15363/30122)&crarr;
+Resolving deltas:  52% (15664/30122)&crarr;
+Resolving deltas:  53% (15966/30122)&crarr;
+Resolving deltas:  54% (16266/30122)&crarr;
+Resolving deltas:  55% (16569/30122)&crarr;
+Resolving deltas:  56% (16869/30122)&crarr;
+Resolving deltas:  57% (17172/30122)&crarr;
+Resolving deltas:  58% (17471/30122)&crarr;
+Resolving deltas:  59% (17772/30122)&crarr;
+Resolving deltas:  60% (18074/30122)&crarr;
+Resolving deltas:  61% (18375/30122)&crarr;
+Resolving deltas:  62% (18676/30122)&crarr;
+Resolving deltas:  63% (18978/30122)&crarr;
+Resolving deltas:  64% (19279/30122)&crarr;
+Resolving deltas:  65% (19580/30122)&crarr;
+Resolving deltas:  66% (19881/30122)&crarr;
+Resolving deltas:  67% (20182/30122)&crarr;
+Resolving deltas:  68% (20483/30122)&crarr;
+Resolving deltas:  69% (20785/30122)&crarr;
+Resolving deltas:  70% (21086/30122)&crarr;
+Resolving deltas:  71% (21387/30122)&crarr;
+Resolving deltas:  72% (21688/30122)&crarr;
+Resolving deltas:  73% (21990/30122)&crarr;
+Resolving deltas:  74% (22291/30122)&crarr;
+Resolving deltas:  75% (22592/30122)&crarr;
+Resolving deltas:  76% (22893/30122)&crarr;
+Resolving deltas:  77% (23194/30122)&crarr;
+Resolving deltas:  78% (23496/30122)&crarr;
+Resolving deltas:  79% (23799/30122)&crarr;
+Resolving deltas:  80% (24098/30122)&crarr;
+Resolving deltas:  81% (24399/30122)&crarr;
+Resolving deltas:  82% (24701/30122)&crarr;
+Resolving deltas:  83% (25002/30122)&crarr;
+Resolving deltas:  84% (25303/30122)&crarr;
+Resolving deltas:  85% (25604/30122)&crarr;
+Resolving deltas:  86% (25905/30122)&crarr;
+Resolving deltas:  87% (26207/30122)&crarr;
+Resolving deltas:  88% (26508/30122)&crarr;
+Resolving deltas:  89% (26809/30122)&crarr;
+Resolving deltas:  90% (27110/30122)&crarr;
+Resolving deltas:  91% (27412/30122)&crarr;
+Resolving deltas:  92% (27713/30122)&crarr;
+Resolving deltas:  93% (28014/30122)&crarr;
+Resolving deltas:  94% (28316/30122)&crarr;
+Resolving deltas:  95% (28616/30122)&crarr;
+Resolving deltas:  96% (28918/30122)&crarr;
+Resolving deltas:  97% (29220/30122)&crarr;
+Resolving deltas:  98% (29520/30122)&crarr;
+Resolving deltas:  99% (29821/30122)&crarr;
+Resolving deltas: 100% (30122/30122)&crarr;
+Resolving deltas: 100% (30122/30122), completed with 95 local objects.
+From file:///home/tom/code/ldmx/1726-rewrite-history/mock-remotes/test
+ + 8f4cc8a04...cdfd2dbf3 trunk                                            -&gt; origin/trunk  (forced update)
+ + b15978509...b6bbdf7f1 1720-bertini-model-for-n-hard-particles          -&gt; origin/1720-bertini-model-for-n-hard-particles  (forced update)
+ + f33a232e7...a95107d21 1725-fix-material-properties-in-ecal-layer-stack -&gt; origin/1725-fix-material-properties-in-ecal-layer-stack  (forced update)
+ + b50c590c0...741120add 888-eventdisplay-re-design                       -&gt; origin/888-eventdisplay-re-design  (forced update)
+ + 4a3e0d149...2b4930f8a BeamInstrumentation                              -&gt; origin/BeamInstrumentation  (forced update)
+ + a93e4846f...0666615e8 MCHCalDigisNTuples                               -&gt; origin/MCHCalDigisNTuples  (forced update)
+ + 5c5b7aa9d...3e5f880f0 add_ecalmiptracking                              -&gt; origin/add_ecalmiptracking  (forced update)
+ + 91716f13f...c2cec19a6 add_hcalTP_hits                                  -&gt; origin/add_hcalTP_hits  (forced update)
+ + 70066aff0...6e925cdca biasing-perf-experiments                         -&gt; origin/biasing-perf-experiments  (forced update)
+ + 901a44d8d...ce3d61fae dev-chrlbell                                     -&gt; origin/dev-chrlbell  (forced update)
+ + 005dba801...665abc549 eb-dev                                           -&gt; origin/eb-dev  (forced update)
+ + 01226ede6...85042fb5e erik_dev                                         -&gt; origin/erik_dev  (forced update)
+ + deb784feb...e4cf2f56d fixTypoInPassname                                -&gt; origin/fixTypoInPassname  (forced update)
+ + a6357516f...1818d301d hcalClusterDQM                                   -&gt; origin/hcalClusterDQM  (forced update)
+ + 863a14921...b3b52ca21 hcal_tot_digitization                            -&gt; origin/hcal_tot_digitization  (forced update)
+ + ff0b1e4ab...f72379d0d iss1137                                          -&gt; origin/iss1137  (forced update)
+ + 12e6d0797...88908caf7 iss1306-part1-breakup-ecal-veto-no-mip           -&gt; origin/iss1306-part1-breakup-ecal-veto-no-mip  (forced update)
+ + 6011bf013...d145e7ea2 iss1348                                          -&gt; origin/iss1348  (forced update)
+ + b62419808...802046c0a iss1379                                          -&gt; origin/iss1379  (forced update)
+ + 9e9e3a260...6d845c098 iss1478                                          -&gt; origin/iss1478  (forced update)
+ + 8d48b72ce...32b8d142f iss1512                                          -&gt; origin/iss1512  (forced update)
+ + f66062465...4c8b391f1 iss1535-biasing-factor-optimization              -&gt; origin/iss1535-biasing-factor-optimization  (forced update)
+ + cc0c150d0...2d8a9d495 iss1562-magfied-expansion                        -&gt; origin/iss1562-magfied-expansion  (forced update)
+ + 6045e6a7d...0b4b6c525 iss1562-magfied-fix                              -&gt; origin/iss1562-magfied-fix  (forced update)
+ + 8a3dbb952...1629b94b1 iss1703-add-endZ-bremdaughter                    -&gt; origin/iss1703-add-endZ-bremdaughter  (forced update)
+ + 9eb9aec40...d37c1b124 iss1723-add-particlenet                          -&gt; origin/iss1723-add-particlenet  (forced update)
+ + 8f28a01d1...7c2369075 ldmx-det-v14-lyso                                -&gt; origin/ldmx-det-v14-lyso  (forced update)
+ + 0271fb57b...27ffa0ad7 ldmx_sw_vidura_uva                               -&gt; origin/ldmx_sw_vidura_uva  (forced update)
+ + 21d21f72a...bc75d5476 lk-testbeam-dev                                  -&gt; origin/lk-testbeam-dev  (forced update)
+ + c401d9746...3d47eab92 lowPbeam                                         -&gt; origin/lowPbeam  (forced update)
+ + beafb93ba...b527be7e1 makevertexingwork                                -&gt; origin/makevertexingwork  (forced update)
+ + 132c3910f...0b4e2f016 ootpu_from_niramay                               -&gt; origin/ootpu_from_niramay  (forced update)
+ + d05f904e1...38a55dbf5 trigDevWes                                       -&gt; origin/trigDevWes  (forced update)
+ + 32e0c3d9a...4ad5348b4 visibles                                         -&gt; origin/visibles  (forced update)
+ + 6514f4e82...a0f8fec4b wide-angle-scattering-events-degree-project      -&gt; origin/wide-angle-scattering-events-degree-project  (forced update)
+ + 6d827ebfc...22d401106 wketchum/Genie_Generator                         -&gt; origin/wketchum/Genie_Generator  (forced update)
+ + 6a8d852d8...306b2d3e5 wketchum/Genie_Generator_HepMC3Refactor          -&gt; origin/wketchum/Genie_Generator_HepMC3Refactor  (forced update)
+Could not access submodule 'Conditions' at commit a3f0a8016
+Could not access submodule 'Ecal' at commit e875b3788
+Could not access submodule 'EventDisplay/gdml_to_gltf/root_cern-To_gltf-Exporter' at commit 3246eef78
+Could not access submodule 'Framework' at commit b44cd5b27
+Could not access submodule 'G4DarkBreM' at commit e812fd4c4
+Could not access submodule 'Hcal' at commit ae741fe10
+Could not access submodule 'MagFieldMap' at commit 0e0bd8916
+Could not access submodule 'SimCore' at commit 092c209a8
+Could not access submodule 'Tracking' at commit 6552aa272
+Could not access submodule 'Tracking/acts' at commit aba33e1c2
+Could not access submodule 'TrigScint' at commit 166a9cad4
+Could not access submodule 'Trigger' at commit 8663456da
+Could not access submodule 'Trigger/HLS_arbitrary_Precision_Types' at commit d99df3327
+Could not access submodule 'acts' at commit f10af88d6
+Could not access submodule 'cmake' at commit 640e33978
+Could not access submodule 'HLS_arbitrary_Precision_Types' at commit ef1f20d35
+Could not access submodule 'ruckus' at commit ef1f20d35
+Rebasing (1/1)&crarr;
+&crarr;
+Successfully rebased and updated refs/heads/trunk.
+<b class=HIG>tom@zuko</b>:<b class=HIB>~/code/ldmx/1726-rewrite-history/rebase-local-changes</b>$ git status
+&crarr;
+On branch trunk
+Your branch is ahead of 'origin/trunk' by 1 commit.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+<b class=HIG>tom@zuko</b>:<b class=HIB>~/code/ldmx/1726-rewrite-history/rebase-local-changes</b>$ git diff o&#x266A;rigin/tr&#x266A;unk 
+&crarr;
+&crarr;
+<b class="BOLD">diff --git a/Recon/CMakeLists.txt b/Recon/CMakeLists.txt</b>
+<b class="BOLD">index 4ba4f0bdd..a19c42dd8 100644</b>
+<b class="BOLD">--- a/Recon/CMakeLists.txt</b>
+<b class="BOLD">+++ b/Recon/CMakeLists.txt</b>
+<b class=CYN>@@ -59,3 +59,4 @@</b> setup_library(module Recon
+ )
+ 
+ setup_python(package_name LDMX/Recon)
+<b class=GRN>+</b><b class=GRN>hello world</b>
+&crarr;
+<b class=HIG>tom@zuko</b>:<b class=HIB>~/code/ldmx/1726-rewrite-history/rebase-local-changes</b>$ exit
+&crarr;
+exit
+
+Script done on 2025-06-28 08:37:50-05:00 [COMMAND_EXIT_CODE="0"]
+</pre>
+</body>
+</html>

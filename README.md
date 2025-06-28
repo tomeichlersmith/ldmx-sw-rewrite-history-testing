@@ -54,3 +54,4 @@ is then rendered into an HTML file in `tests/NAME.html`. For these test recordin
 into this repository and pushed to GitHub, we can use [html-preview](https://github.com/html-preview/html-preview.github.io) to view the session including the input commands and output results.
 
 - [naive-pull](https://html-preview.github.io/?url=https://github.com/tomeichlersmith/ldmx-sw-rewrite-history-testing/blob/main/tests/naive-pull.html): attempt to do a pull, see error, override it with first suggestion by Git
+- [rebase-local-changes](https://html-preview.github.io/?url=https://github.com/tomeichlersmith/ldmx-sw-rewrite-history-testing/blob/main/tests/rebase-local-changes.html)
