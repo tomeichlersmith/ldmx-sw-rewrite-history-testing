@@ -50,12 +50,12 @@ init-mock-remotes:
     git -C {{ actual_g4db }} fetch -q --prune --update-head-ok --refmap "" origin +refs/*:refs/*
     git -C {{ actual_g4db }} remote remove origin
     cp -r {{ actual_g4db }} {{ test_g4db_remote }}
-    git clone --bare {{ ldmx_sw_github }} {{ actual_ldmx_sw }}
+    git clone {{ ldmx_sw_github }} {{ actual_ldmx_sw }}
     git -C {{ actual_ldmx_sw }} fetch -q --prune --update-head-ok --refmap "" origin +refs/*:refs/*
     git -C {{ actual_ldmx_sw }} remote remove origin
     cp -r {{ actual_ldmx_sw }} {{ test_remote }}
     git -C {{ test_remote }} submodule set-url SimCore/G4DarkBreM {{ test_g4db_url }}
-    git -C {{ test_remote }} commit -m "redirect G4DB submodule link"
+    git -C {{ test_remote }} commit -m "redirect G4DB submodule link" .gitmodules
 
 # reset test remote to before filtering operation
 reset-test-remote:
