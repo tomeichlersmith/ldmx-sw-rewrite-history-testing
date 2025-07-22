@@ -6,7 +6,7 @@ Needs `just`, `git >= 2.36.0`, and `ansi2html`.
 - [x] filtering command for ldmx-sw history
 - [x] check if merge pulls re-introduce old history (they do)
 - [x] check if rebase pulls re-introduce old history (they don't)
-- [ ] clean submodules and update submodule refs when filtering ldmx-sw
+- [ ] clean submodule and update submodule refs when filtering ldmx-sw
 
 ## Setup
 - `just install-git-filter-repo` to install `git-filter-repo` 2.47.0
