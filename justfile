@@ -78,26 +78,7 @@ cleanup-mock-remotes:
 
 # filter extra-crispy clone
 filter: check-git-filter-repo
-  git -C {{ test_g4db }} filter-repo \
-    --sensitive-data-removal \
-    --invert-paths \
-    --path-glob '**.ipynb' \
-    --path-glob '**.csv.gz'
-  git -C {{ clean_clone }} filter-repo \
-    --sensitive-data-removal \
-    --invert-paths \
-    --path-glob '**/gold.root' \
-    --path-glob '**/gold.log' \
-    --path-glob 'data/**.pkl' \
-    --path-glob 'data/**.tar.gz' \
-    --path-glob 'Configuration/data/**.pkl' \
-    --path-glob 'Configuration/data/**.tar.gz' \
-    --path-glob 'Ecal/data/**.pkl' \
-    --path-glob 'Ecal/data/**.tar.gz' \
-    --path-glob 'docs/html/**' \
-    --path-glob '**.ipynb' \
-    --path-glob '**/catch.hpp' \
-    --path-glob '**.root'
+    ./filter {{ test_g4db_remote }} {{ clean_clone }}
 
 # push extra-crispy to clean history remote
 push:

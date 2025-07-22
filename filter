@@ -1,0 +1,42 @@
+#!/bin/sh
+#
+# do history filtering on ldmx-sw
+# assumes git-filter-repo is installed
+
+set -o nounset
+set -o errexit
+
+test_g4db_remote="${1}"
+ldmxsw_clone="${2}"
+
+git -C ${test_g4db_remote} filter-repo \
+  --sensitive-data-removal \
+  --invert-paths \
+  --path-glob '**.ipynb' \
+  --path-glob '**.csv.gz'
+cp ${test_g4db_remote}/filter-repo/commit-map ${ldmxsw_clone}/G4DarkBreM-commit-map
+git -C ${ldmxsw_clone} filter-repo \
+  --sensitive-data-removal \
+  --invert-paths \
+  --path-glob '**/gold.root' \
+  --path-glob '**/gold.log' \
+  --path-glob 'data/**.pkl' \
+  --path-glob 'data/**.tar.gz' \
+  --path-glob 'Configuration/data/**.pkl' \
+  --path-glob 'Configuration/data/**.tar.gz' \
+  --path-glob 'Ecal/data/**.pkl' \
+  --path-glob 'Ecal/data/**.tar.gz' \
+  --path-glob 'docs/html/**' \
+  --path-glob '**.ipynb' \
+  --path-glob '**/catch.hpp' \
+  --path-glob '**.root' \
+  --commit-callback '
+  for change in commit.file_changes:
+    if change.filename == b"SimCore/G4DarkBreM":
+      with open("G4DarkBreM-commit-map") as cm:
+          for line in cm:
+              old, new = tuple(s.encode() for s in line.strip().split())
+              if change.blob_id == old:
+                  change.blob_id = new 
+                  return commit
+  '
