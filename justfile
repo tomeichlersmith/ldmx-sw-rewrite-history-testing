@@ -29,23 +29,33 @@ install-git-filter-repo: check-git
     git filter-repo --version
 
 ldmx_sw_github := "git@github.com:LDMX-Software/ldmx-sw.git"
+g4db_github := "git@github.com:LDMX-Software/G4DarkBreM.git"
 
 dirty_clone := "original-recipe"
 clean_clone := "extra-crispy"
 mock_remotes := justfile_directory() / "mock-remotes"
 actual_ldmx_sw := mock_remotes / "real_ldmx_sw.git"
+actual_g4db := mock_remotes / "real_g4db.git"
 test_remote := mock_remotes / "test.git"
+test_g4db_remote := mock_remotes / "test_g4db.git"
 test_url := "file://"+test_remote
+test_g4db_url := "file://"+test_g4db_remote
 
 # use the plain-gitconfig to show git's default behavior
 export GIT_CONFIG_GLOBAL := justfile_directory() / "plain-gitconfig"
 
 # make some mock remotes of ldmx-sw for testing
 init-mock-remotes:
+    git clone --bare {{ g4db_github }} {{ actual_g4db }}
+    git -C {{ actual_g4db }} fetch -q --prune --update-head-ok --refmap "" origin +refs/*:refs/*
+    git -C {{ actual_g4db }} remote remove origin
+    cp -r {{ actual_g4db }} {{ test_g4db_remote }}
     git clone --bare {{ ldmx_sw_github }} {{ actual_ldmx_sw }}
     git -C {{ actual_ldmx_sw }} fetch -q --prune --update-head-ok --refmap "" origin +refs/*:refs/*
     git -C {{ actual_ldmx_sw }} remote remove origin
     cp -r {{ actual_ldmx_sw }} {{ test_remote }}
+    git -C {{ test_remote }} submodule set-url SimCore/G4DarkBreM {{ test_g4db_url }}
+    git -C {{ test_remote }} commit -m "redirect G4DB submodule link"
 
 # reset test remote to before filtering operation
 reset-test-remote:
@@ -68,6 +78,11 @@ cleanup-mock-remotes:
 
 # filter extra-crispy clone
 filter: check-git-filter-repo
+  git -C {{ test_g4db }} filter-repo \
+    --sensitive-data-removal \
+    --invert-paths \
+    --path-glob '**.ipynb' \
+    --path-glob '**.csv.gz'
   git -C {{ clean_clone }} filter-repo \
     --sensitive-data-removal \
     --invert-paths \
