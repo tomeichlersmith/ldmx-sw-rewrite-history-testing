@@ -7,6 +7,9 @@ Needs `just`, `git >= 2.36.0`, and `ansi2html`.
 - [x] check if merge pulls re-introduce old history (they do)
 - [x] check if rebase pulls re-introduce old history (they don't)
 - [ ] clean submodule and update submodule refs when filtering ldmx-sw
+    - I think this is what we want: https://github.com/newren/git-filter-repo/issues/537
+      We `git filter-repo` G4DarkBreM and then use the generated `commit-map` to update
+      the commits that affect it while running `git filter-repo` in ldmx-sw.
 
 ## Setup
 - `just install-git-filter-repo` to install `git-filter-repo` 2.47.0
