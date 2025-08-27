@@ -53,6 +53,71 @@ I don't think we will rewrite the history of those refs because
 3. Leaving them in place will certainly keep the diff views of past PRs acting like they are currently.
 4. Only the PRs updating the gold files themselves would be affected (I think).
 
+### Make Sure Local Repo is Prepared for Deletion
+Folks can make sure their changes to ldmx-sw can be carried through this rewriting by making sure any changes to the files in `git` are committed and pushed to the GitHub repository.
+
+First, we need to make sure that there are no "uncommitted changes" in your local copy of the git repository.
+```
+$ git status --untracked --ignored
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+    modified: file-with-changes
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	new-file-not-ignored
+
+Ignored files:
+  (use "git add -f <file>..." to include in what will be committed)
+	file-ignored-by-git
+
+no changes added to commit (use "git add" and/or "git commit -a")
+```
+Some of these sections may be missing, for example, if there are no changes,
+untracked files, and ignored files, then it will say "working tree clean".
+```
+$ git status --untracked --ignored
+On branch main
+Your branch is up to date with 'origin/main'.
+
+nothing to commit, working tree clean
+```
+and by making sure your local `git stash` is empty.
+```
+$ git stash list
+# if this returns _anything_, that's bad
+```
+I cannot tell you what you will want to keep, but I have three suggested options for any files
+that come up listed with one of these commands.
+1. Delete the Changes: If they are old or not needed, you can delete the changes manually to tell `git` and yourself they are not important. Do this by discarding changes with `git restore` if the file is listed under "Changes not staged" or deleting the file if it is listed under "Untracked" or "Ignored". Changes listed in the `git stash` that you want to remove can be deleted with `git stash drop`
+2. Save the Changes: If the changes are something important that you are working on, you can create a branch and commit them so they are saved in the repository. `git switch -c <branch-name> && git add <files> && git commit -m "messsage"`
+3. Move the files: Especially for Untracked and Ignored files that are large (like data files, images, and jupyter notebooks), the best option is to put them somewhere outside of ldmx-sw.
+
+After you are getting a "working tree clean" message and your `git stash` is empty, we can move on to making sure your branches are pushed to GitHub.
+This can be checked by inspecting the output of `git branch -vv`. For example
+```
+$ git branch -vv
+  danger-ahead    56a8890 [origin/danger-ahead: ahead 1] add content
+  danger-noup     5e9b12f change on feat
+* main            7c2ed30 [origin/main] add to changelog
+  nodanger-behind d283f8e [origin/nodanger-behind: behind 1] two more to dos before start of class
+```
+Notes by the line
+1. `danger-ahead`: this branch has a commit that is "ahead" of the "origin" branch (meaning it has not been pushed to GitHub). Switch to that branch and push: `git switch danger-ahead && git push`
+2. `danger-noup`: this branch has never been pushed to GitHub. If you want to keep this branch, you need to push it: `git switch danger-noup && git push -u origin danger-noup`.
+3. `main`: this branch is in sync with what is on GitHub. Nothing needs to be done.
+4. `nodanger-behind`: this branch is "behind" what is on GitHub, but that is fine. I will use what is on GitHub.
+
+When you are satisified with the output of your `git branch`, you can exit and remove your ldmx-sw.
+```
+cd .. && rm -rf ldmx-sw
+```
+and then re-clone it after I update the history.
+
 ## Experience
 To see how a developer with a clone of the old/dirty/heavy history would experience
 their remote being updated with the new/clean/light history, we make another copy of ldmx-sw
