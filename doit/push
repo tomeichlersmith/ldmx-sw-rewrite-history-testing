@@ -1,0 +1,10 @@
+#!/bin/sh
+#
+# do history filtering on ldmx-sw
+# assumes git-filter-repo is installed
+
+set -o nounset
+set -o errexit
+
+git -C G4DarkBreM.git push --mirror
+git -C ldmx-sw push --mirror
