@@ -19,9 +19,11 @@ Filter history for both G4DarkBreM and ldmx-sw.
 ```
 
 ### Push
+- Disable actions so I don't get a bunch of emails
 ```
 ./push
 ```
+- Re-enable actions
 
 ### Archive
 Add the log and G4DarkBreM/ldmx-sw commit-maps to this repository for archival purposes.
