@@ -14,7 +14,7 @@ git -C G4DarkBreM.git filter-repo \
   --path-glob '**.csv.gz'
 cp G4DarkBreM.git/filter-repo/commit-map G4DarkBreM-commit-map
 
-git -C ldmx-sw filter-repo \
+git -C ldmx-sw.git filter-repo \
   --sensitive-data-removal \
   --invert-paths \
   --path-glob '**/gold.root' \
@@ -45,4 +45,4 @@ git -C ldmx-sw filter-repo \
                   change.blob_id = new 
                   return commit
   '
-cp ldmx-sw/.git/filter-repo/commit-map ldmx-sw-commit-map
+cp ldmx-sw.git/filter-repo/commit-map ldmx-sw-commit-map

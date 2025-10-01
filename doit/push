@@ -1,10 +1,9 @@
 #!/bin/sh
 #
-# do history filtering on ldmx-sw
-# assumes git-filter-repo is installed
+# push filtered repositories back to main GitHub
 
 set -o nounset
 set -o errexit
 
 git -C G4DarkBreM.git push --mirror
-git -C ldmx-sw push --mirror
+git -C ldmx-sw.git push --mirror
