@@ -1,28 +1,33 @@
 # Executing Clean
 
+Before starting, open a `script` log to catch all messages for later inspection.
+```
+script doit.log
+```
+
 ### Clone
 Download mirror of G4DarkBreM and ldmx-sw, mirror to insurance location on personal GitHub.
 ```
-./clone | tee clone.log
+./clone
 ```
 - double check insurance location is up and matching
 
 ### Filter
 Filter history for both G4DarkBreM and ldmx-sw.
 ```
-./filter | tee filter.log
+./filter
 ```
 
 ### Push
 ```
-./push | tee push.log
+./push
 ```
 
 ### Archive
-Add the logs and G4DarkBreM/ldmx-sw commit-maps to this repository for archival purposes.
+Add the log and G4DarkBreM/ldmx-sw commit-maps to this repository for archival purposes.
 ```
-git add *.log G4DarkBreM-commit-map ldmx-sw-commit-map
-git commit -m "run logs and commit maps"
+git add doit.log G4DarkBreM-commit-map ldmx-sw-commit-map
+git commit -m "run log and commit maps"
 ```
 
 

@@ -29,6 +29,10 @@ git -C ldmx-sw filter-repo \
   --path-glob '**.ipynb' \
   --path-glob '**/catch.hpp' \
   --path-glob '**.root' \
+  --path-glob '**.json' \
+  --path-glob '**.lhe' \
+  --path-glob 'EventDisplay/ldmx-vis/**.xml' \
+  --path-glob 'EventDisplay/ldmx-vis/**.gz' \
   --commit-callback '
   for change in commit.file_changes:
     if change.filename == b"SimCore/G4DarkBreM":

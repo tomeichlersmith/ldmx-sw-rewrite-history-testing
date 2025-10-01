@@ -10,9 +10,11 @@ git clone --mirror git@github.com:LDMX-Software/G4DarkBreM.git
 git clone git@github.com:LDMX-Software/ldmx-sw.git
 
 git -C G4DarkBreM.git remote set-url origin git@github.com:tomeichlersmith/G4DarkBreM.git
-git -C G4DarkBreM.git push --mirror
+# allow push to fail, expect user to double check mirror
+git -C G4DarkBreM.git push --mirror || true
 git -C G4DarkBreM.git remote set-url origin git@github.com:LDMX-Software/G4DarkBreM.git
 
 git -C ldmx-sw remote set-url origin git@github.com:tomeichlersmith/ldmx-sw.git
-git -C ldmx-sw push --mirror
-git -C ldmx-sw remote set-url origin git@github.com:LDMX-Software/G4DarkBreM.git
+# allow push to fail, expect user to double check mirror
+git -C ldmx-sw push --mirror || true
+git -C ldmx-sw remote set-url origin git@github.com:LDMX-Software/ldmx-sw.git
